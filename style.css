@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@800&display=swap");
+
+body {
+  font-family: "Orbitron", sans-serif;
+}
+
+.watch-container {
+  background-color: black;
+  margin: 0 auto;
+  width: auto;
+  font-size: 3rem;
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+#change-color-button {
+  font-size: 2rem;
+  font-family: "Orbitron", sans-serif;
+  background-color: rgb(216, 216, 216);
+  border: 0;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+#change-color-button:hover {
+  background-color: rgb(43, 43, 43);
+  color: white;
+}
+
+#change-time-format-button {
+  font-size: 2rem;
+  font-family: "Orbitron", sans-serif;
+  background-color: rgb(216, 216, 216);
+  border: 0;
+  padding: 1rem;
+  cursor: pointer;
+  width: 10rem;
+  height: 4rem;
+  margin: 1rem;
+}
+
+#change-time-format-button:hover {
+  background-color: rgb(43, 43, 43);
+  color: white;
+}
+
+.info {
+  font-size: 1rem;
+}
