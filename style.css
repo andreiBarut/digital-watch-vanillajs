@@ -48,3 +48,8 @@ body {
 .info {
 	font-size: 1rem;
 }
+
+#alert-info {
+	color: yellow;
+	font-size: 1.2rem;
+}
