@@ -1,4 +1,9 @@
 window.onload = () => {
+	//*CONDITIONS FOR DISPLAYING AM OR MILITARY TIME, AS ARROW FUNCTIONS TO BE PASSED AND CALLED INSIDE THE IF STATEMENTS FROM THE SET INTERVAL FUNCTION WHICH DISPLAYS AND CHANGES TIME FORMAT
+	let subtractTwelve = (bool, date) => !bool && date > 12 && !bool && date <= 24;
+	let notSubtractTwelve = (bool, date) => !bool && date <= 12;
+
+	//* VARIABLE DECLARATIONS
 	const colors = ["red", "orange", "green", "blue", "indigo", "violet", "white"];
 	let isMilitary = true;
 	let increment = 0;
@@ -10,6 +15,8 @@ window.onload = () => {
 	const changeTimeFormatButton = document.getElementById(
 		"change-time-format-button"
 	);
+
+	//*CHANGE TIME BUTTON METHODS
 	changeTimeFormatButton.innerText = "AM/PM";
 	changeTimeFormatButton.addEventListener("click", () => {
 		if (isMilitary) {
@@ -21,6 +28,7 @@ window.onload = () => {
 		}
 	});
 
+	//*CHANGE COLOR BUTTON METHOD
 	changeColorButton.addEventListener("click", () => {
 		timeParagraph.style = `color:${colors[increment]}`;
 		increment++;
@@ -30,6 +38,7 @@ window.onload = () => {
 		changeColorButton.style = `color:${colors[increment]}`;
 	});
 
+	//*DISPLAYING TIME METHODS (SETINTERVAL)
 	setInterval(() => {
 		const date = new Date();
 		let time = "";
@@ -51,7 +60,3 @@ window.onload = () => {
 
 // TODO - add timezone api that returns date Object depending on the time zone. Use fetch and get method
 // TODO - recreate the same app in react, using axios
-
-//*CONDITIONS FOR DISPLAYING AM OR MILITARY TIME, AS ARROW FUNCTIONS TO BE PASSED AND CALLED INSIDE THE IF STATEMENTS FROM THE SET INTERVAL FUNCTION WHICH DISPLAYS AND CHANGES TIME FORMAT
-let subtractTwelve = (bool, date) => !bool && date > 12 && !bool && date <= 24;
-let notSubtractTwelve = (bool, date) => !bool && date <= 12;
