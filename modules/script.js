@@ -1,10 +1,22 @@
+import { timeZones } from "./requestModule.js";
+
+//^THE IMPORT RETURNS A PROMISE OBJECT, WE CALL THE THEN METHOD ON THE PROMISE, IN ORDER TO GET OUR RESULT
+timeZones.then((result) => {
+	console.log(result);
+	//todo we need to make an input with options for all the time zones
+	//todo the challenge will be : how do I pass the user input as a parameter in the requestModule.js module file
+	//todo make the request to the specified timezone, in order to get the time in the form of a date like new Date(result,formatted)
+	//todo store that date in a variable, and pass it to the setInterval function, or just take advantage of closures
+	console.log(new Date(result.formatted));
+});
+
 window.onload = () => {
 	//^CONDITIONS FOR DISPLAYING AM OR MILITARY TIME, AS ARROW FUNCTIONS TO BE PASSED AND CALLED INSIDE THE IF STATEMENTS FROM THE SET INTERVAL FUNCTION WHICH DISPLAYS AND CHANGES TIME FORMAT
 
 	//? function params are bool, hours; functions to be called with isMilitary, and date.getHours();
-	let subtractTwelve = (bool, hours) =>
+	const subtractTwelve = (bool, hours) =>
 		!bool && hours > 12 && !bool && hours <= 24;
-	let notSubtractTwelve = (bool, hours) => !bool && hours <= 12;
+	const notSubtractTwelve = (bool, hours) => !bool && hours <= 12;
 
 	//^ VARIABLE DECLARATIONS
 	const colors = ["red", "orange", "green", "blue", "indigo", "violet", "white"];
