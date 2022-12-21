@@ -7,6 +7,7 @@ timeZones.then((result) => {
 	//todo the challenge will be : how do I pass the user input as a parameter in the requestModule.js module file
 	//todo make the request to the specified timezone, in order to get the time in the form of a date like new Date(result,formatted)
 	//todo store that date in a variable, and pass it to the setInterval function, or just take advantage of closures
+	//todo, also you will probably need one request module for the timezones, and one for making the request to the user-selected time zone
 	console.log(new Date(result.formatted));
 });
 
