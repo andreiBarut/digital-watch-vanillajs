@@ -1,4 +1,26 @@
 import { timeZones } from "./requestModule.js";
+import { allTimeZones } from "./requestTimeZones.js";
+const zonesDataList = document.getElementById("zones");
+const selectedTimeZone = document.getElementById("selectedTimeZone");
+//^WE MAKE USE OF ANOTHER IMPORT, WHICH IMPORTS ALL THE TIMEZONES, WE WILL RENDER THE OPTIONS IN AN INPUT FIELD
+allTimeZones.then((result) => {
+	result.zones.map((zone) => {
+		console.log(zone.countryName.toString());
+		const option = document.createElement("option");
+		option.setAttribute("value", `${zone.countryName.toString()}`);
+		zonesDataList.appendChild(option);
+		console.log(selectedTimeZone.value);
+	});
+});
+
+//^ the following section gets the value from the input which stores the zone, and then prints it in console on the click of the selectZoneButton
+function printZone(input) {
+	console.log(input.value);
+}
+const selectZoneButton = document.getElementById("select-zone-button");
+selectZoneButton.addEventListener("click", () => {
+	printZone(selectedTimeZone);
+});
 
 //^THE IMPORT RETURNS A PROMISE OBJECT, WE CALL THE THEN METHOD ON THE PROMISE, IN ORDER TO GET OUR RESULT
 timeZones.then((result) => {
