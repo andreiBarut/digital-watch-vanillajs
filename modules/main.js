@@ -1,9 +1,8 @@
 //*request imports
-// import { timeZones } from "./requestModule.js";
 import { allTimeZones } from "./requestTimeZones.js";
 
 //*dom variables imports
-import { zoneName } from "./domVariablesModule.js";
+
 import { zonesDataList } from "./domVariablesModule.js";
 import { selectZoneButton } from "./domVariablesModule.js";
 import { selectedTimeZone } from "./domVariablesModule.js";
@@ -14,12 +13,12 @@ import { timeParagraph } from "./domVariablesModule.js";
 
 //! WE STORE THE USER TIME ZONE HERE
 
-let userTimeZone;
+let userTimeZone = "local time";
 let date = new Date();
 let userDate;
 
 //*request results
-//&
+
 //WE MAKE USE OF ANOTHER IMPORT, WHICH IMPORTS ALL THE TIMEZONES, WE WILL RENDER THE OPTIONS IN AN INPUT FIELD
 allTimeZones.then((result) => {
 	result.zones.map((zone) => {
@@ -78,16 +77,16 @@ window.onload = () => {
 				date.getHours() - 12
 			} : ${date.getMinutes()} : ${date.getSeconds()} PM`;
 			alertInfoParagraph.innerText = "AM/PM Time Format Selected!";
-			timeParagraph.innerText = time;
+			timeParagraph.innerText = time + " \n" + userTimeZone;
 		} else if (notSubtractTwelve(isMilitary, date.getHours())) {
 			time = `${date.getHours()} : ${date.getMinutes()} : ${date.getSeconds()} AM`;
-			timeParagraph.innerText = time;
+			timeParagraph.innerText = time + " \n" + userTimeZone;
 		} else {
 			time = `${date.getHours()} : ${date.getMinutes()} : ${date.getSeconds()}`;
 
 			console.log(time); //! THIS LOGS THE TIME, FOR TESTING ONLY
 			alertInfoParagraph.innerText = "Military Time Format Selected!";
-			timeParagraph.innerText = time;
+			timeParagraph.innerText = time + " \n" + userTimeZone;
 		}
 	}, 1000);
 };
@@ -100,7 +99,8 @@ function printZone(input) {
 
 selectZoneButton.addEventListener("click", () => {
 	userTimeZone = printZone(selectedTimeZone);
-	zoneName.innerText = userTimeZone;
+
+	alert(`Timezone changed to ${userTimeZone}`);
 	console.log(userTimeZone);
 	const timeZones = fetch(
 		`http://api.timezonedb.com/v2.1/get-time-zone?key=83ZJ170FGGYI&format=json&by=zone&zone=${userTimeZone}
@@ -121,4 +121,6 @@ selectZoneButton.addEventListener("click", () => {
 	printZone(selectedTimeZone);
 });
 
+// TODO - make it responsive
+//TODO - clean code so that is efficient, REFACTOR
 // TODO - recreate the same app in react, using axios

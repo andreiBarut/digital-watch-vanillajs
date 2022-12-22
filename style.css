@@ -73,7 +73,8 @@ h1 {
 .filter-container button {
 	width: fit-content;
 	margin: 0 auto;
-	font-size: 1.5rem;
+	font-size: 2rem;
+	padding: 0.5rem;
 	font-family: "Orbitron";
 }
 

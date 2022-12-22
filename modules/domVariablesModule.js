@@ -1,6 +1,3 @@
-const zoneName = document.getElementById("zone-name");
-zoneName.innerText = "local time";
-
 const zonesDataList = document.getElementById("zones");
 const selectedTimeZone = document.getElementById("selectedTimeZone");
 const selectZoneButton = document.getElementById("select-zone-button");
@@ -12,7 +9,6 @@ const changeTimeFormatButton = document.getElementById(
 );
 
 export {
-	zoneName,
 	zonesDataList,
 	selectZoneButton,
 	selectedTimeZone,
