@@ -1,5 +1,5 @@
 //*request imports
-import { timeZones } from "./requestModule.js";
+// import { timeZones } from "./requestModule.js";
 import { allTimeZones } from "./requestTimeZones.js";
 
 //*dom variables imports
@@ -11,12 +11,17 @@ import { changeColorButton } from "./domVariablesModule.js";
 import { changeTimeFormatButton } from "./domVariablesModule.js";
 import { timeParagraph } from "./domVariablesModule.js";
 
+//! WE STORE THE USER TIME ZONE HERE
+let userTimeZone;
+let date = new Date();
+let userDate;
+
 //*request results
 //&
 //WE MAKE USE OF ANOTHER IMPORT, WHICH IMPORTS ALL THE TIMEZONES, WE WILL RENDER THE OPTIONS IN AN INPUT FIELD
 allTimeZones.then((result) => {
 	result.zones.map((zone) => {
-		console.log(zone.zoneName.toString());
+		// console.log(zone.zoneName.toString());
 		const option = document.createElement("option");
 		option.setAttribute("value", `${zone.zoneName.toString()}`);
 		zonesDataList.appendChild(option);
@@ -24,14 +29,6 @@ allTimeZones.then((result) => {
 });
 
 //THE IMPORT RETURNS A PROMISE OBJECT, WE CALL THE THEN METHOD ON THE PROMISE, IN ORDER TO GET OUR RESULT
-timeZones.then((result) => {
-	console.log(result);
-	//todo the challenge will be : how do I pass the user input as a parameter in the requestModule.js module file
-	//todo make the request to the specified timezone, in order to get the time in the form of a date like new Date(result,formatted)
-	//todo store that date in a variable, and pass it to the setInterval function, or just take advantage of closures
-	//todo, also you will probably need one request module for the timezones, and one for making the request to the user-selected time zone
-	console.log(new Date(result.formatted));
-});
 
 //*digital watch
 
@@ -72,7 +69,7 @@ window.onload = () => {
 
 	//DISPLAYING TIME METHODS (SETINTERVAL)
 	setInterval(() => {
-		const date = new Date();
+		date.setSeconds(date.getSeconds() + 1);
 		let time = "";
 		if (subtractTwelve(isMilitary, date.getHours())) {
 			time = `${
@@ -85,6 +82,7 @@ window.onload = () => {
 			timeParagraph.innerText = time;
 		} else {
 			time = `${date.getHours()} : ${date.getMinutes()} : ${date.getSeconds()}`;
+
 			console.log(time); //! THIS LOGS THE TIME, FOR TESTING ONLY
 			alertInfoParagraph.innerText = "Military Time Format Selected!";
 			timeParagraph.innerText = time;
@@ -95,12 +93,29 @@ window.onload = () => {
 //*get user-selected timezone
 
 function printZone(input) {
-	console.log(input.value);
+	return input.value;
 }
 
 selectZoneButton.addEventListener("click", () => {
+	userTimeZone = printZone(selectedTimeZone);
+	console.log(userTimeZone);
+	const timeZones = fetch(
+		`http://api.timezonedb.com/v2.1/get-time-zone?key=83ZJ170FGGYI&format=json&by=zone&zone=${userTimeZone}
+		`
+	)
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		});
+
+	timeZones.then((result) => {
+		console.log(result);
+		userDate = result.formatted;
+		date = new Date(userDate);
+		console.log(new Date(result.formatted));
+	});
 	printZone(selectedTimeZone);
 });
 
-// TODO - add timezone api that returns date Object depending on the time zone. Use fetch and get method
 // TODO - recreate the same app in react, using axios
