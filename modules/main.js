@@ -12,17 +12,18 @@ import { changeTimeFormatButton } from "./domVariablesModule.js";
 import { timeParagraph } from "./domVariablesModule.js";
 
 //*request results
-//^WE MAKE USE OF ANOTHER IMPORT, WHICH IMPORTS ALL THE TIMEZONES, WE WILL RENDER THE OPTIONS IN AN INPUT FIELD
+//&
+//WE MAKE USE OF ANOTHER IMPORT, WHICH IMPORTS ALL THE TIMEZONES, WE WILL RENDER THE OPTIONS IN AN INPUT FIELD
 allTimeZones.then((result) => {
 	result.zones.map((zone) => {
-		console.log(zone.countryName.toString());
+		console.log(zone.zoneName.toString());
 		const option = document.createElement("option");
-		option.setAttribute("value", `${zone.countryName.toString()}`);
+		option.setAttribute("value", `${zone.zoneName.toString()}`);
 		zonesDataList.appendChild(option);
 	});
 });
 
-//^THE IMPORT RETURNS A PROMISE OBJECT, WE CALL THE THEN METHOD ON THE PROMISE, IN ORDER TO GET OUR RESULT
+//THE IMPORT RETURNS A PROMISE OBJECT, WE CALL THE THEN METHOD ON THE PROMISE, IN ORDER TO GET OUR RESULT
 timeZones.then((result) => {
 	console.log(result);
 	//todo the challenge will be : how do I pass the user input as a parameter in the requestModule.js module file
@@ -35,19 +36,19 @@ timeZones.then((result) => {
 //*digital watch
 
 window.onload = () => {
-	//^CONDITIONS FOR DISPLAYING AM OR MILITARY TIME, AS ARROW FUNCTIONS TO BE PASSED AND CALLED INSIDE THE IF STATEMENTS FROM THE SET INTERVAL FUNCTION WHICH DISPLAYS AND CHANGES TIME FORMAT
+	//CONDITIONS FOR DISPLAYING AM OR MILITARY TIME, AS ARROW FUNCTIONS TO BE PASSED AND CALLED INSIDE THE IF STATEMENTS FROM THE SET INTERVAL FUNCTION WHICH DISPLAYS AND CHANGES TIME FORMAT
 
 	//? function params are bool, hours; functions to be called with isMilitary, and date.getHours();
 	const subtractTwelve = (bool, hours) =>
 		!bool && hours > 12 && !bool && hours <= 24;
 	const notSubtractTwelve = (bool, hours) => !bool && hours <= 12;
 
-	//^ VARIABLE DECLARATIONS
+	// VARIABLE DECLARATIONS
 	const colors = ["red", "orange", "green", "blue", "indigo", "violet", "white"];
 	let isMilitary = true;
 	let increment = 0;
 
-	//^CHANGE TIME BUTTON METHODS
+	//CHANGE TIME BUTTON METHODS
 	changeTimeFormatButton.innerText = "AM/PM";
 	changeTimeFormatButton.addEventListener("click", () => {
 		if (isMilitary) {
@@ -59,7 +60,7 @@ window.onload = () => {
 		}
 	});
 
-	//^CHANGE COLOR BUTTON METHOD
+	//CHANGE COLOR BUTTON METHOD
 	changeColorButton.addEventListener("click", () => {
 		timeParagraph.style = `color:${colors[increment]}`;
 		increment++;
@@ -69,7 +70,7 @@ window.onload = () => {
 		changeColorButton.style = `color:${colors[increment]}`;
 	});
 
-	//^DISPLAYING TIME METHODS (SETINTERVAL)
+	//DISPLAYING TIME METHODS (SETINTERVAL)
 	setInterval(() => {
 		const date = new Date();
 		let time = "";
@@ -91,10 +92,8 @@ window.onload = () => {
 	}, 1000);
 };
 
-// TODO - add timezone api that returns date Object depending on the time zone. Use fetch and get method
-// TODO - recreate the same app in react, using axios
+//*get user-selected timezone
 
-//^ the following section gets the value from the input which stores the zone, and then prints it in console on the click of the selectZoneButton
 function printZone(input) {
 	console.log(input.value);
 }
@@ -102,3 +101,6 @@ function printZone(input) {
 selectZoneButton.addEventListener("click", () => {
 	printZone(selectedTimeZone);
 });
+
+// TODO - add timezone api that returns date Object depending on the time zone. Use fetch and get method
+// TODO - recreate the same app in react, using axios

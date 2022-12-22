@@ -1,5 +1,5 @@
 const timeZones = fetch(
-	"http://api.timezonedb.com/v2.1/get-time-zone?key=83ZJ170FGGYI&format=json&by=zone&zone=America/Chicago"
+	`http://api.timezonedb.com/v2.1/get-time-zone?key=83ZJ170FGGYI&format=json&by=zone&zone=America/Chicago`
 )
 	.then((response) => response.json())
 	.then((data) => {
