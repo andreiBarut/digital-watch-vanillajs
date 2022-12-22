@@ -3,6 +3,7 @@
 import { allTimeZones } from "./requestTimeZones.js";
 
 //*dom variables imports
+import { zoneName } from "./domVariablesModule.js";
 import { zonesDataList } from "./domVariablesModule.js";
 import { selectZoneButton } from "./domVariablesModule.js";
 import { selectedTimeZone } from "./domVariablesModule.js";
@@ -12,6 +13,7 @@ import { changeTimeFormatButton } from "./domVariablesModule.js";
 import { timeParagraph } from "./domVariablesModule.js";
 
 //! WE STORE THE USER TIME ZONE HERE
+
 let userTimeZone;
 let date = new Date();
 let userDate;
@@ -98,6 +100,7 @@ function printZone(input) {
 
 selectZoneButton.addEventListener("click", () => {
 	userTimeZone = printZone(selectedTimeZone);
+	zoneName.innerText = userTimeZone;
 	console.log(userTimeZone);
 	const timeZones = fetch(
 		`http://api.timezonedb.com/v2.1/get-time-zone?key=83ZJ170FGGYI&format=json&by=zone&zone=${userTimeZone}

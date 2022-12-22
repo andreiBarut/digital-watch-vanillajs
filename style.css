@@ -5,6 +5,10 @@ body {
 	background-color: white;
 }
 
+h1 {
+	text-align: center;
+}
+
 .watch-container {
 	background-color: black;
 	margin: 0 auto;
@@ -53,4 +57,28 @@ body {
 #alert-info {
 	color: yellow;
 	font-size: 1.2rem;
+}
+
+.filter-container {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	width: fit-content;
+	margin: auto;
+	/* border: 2px solid red; */
+	text-align: center;
+	/* font-size: 1rem; */
+}
+
+.filter-container button {
+	width: fit-content;
+	margin: 0 auto;
+	font-size: 1.5rem;
+	font-family: "Orbitron";
+}
+
+.filter-container input {
+	font-size: 1.5rem;
+	text-align: center;
+	font-family: "Orbitron";
 }
