@@ -39,7 +39,9 @@ window.onload = () => {
 	//? function params are bool, hours; functions to be called with isMilitary, and date.getHours();
 	const subtractTwelve = (bool, hours) =>
 		!bool && hours > 12 && !bool && hours <= 24;
+	//! IF THE HOUR IS 12, THEN IT SUBTRACTS TO 0, AND IT SHOWS 0 AM. NOT CORRECT
 	const notSubtractTwelve = (bool, hours) => !bool && hours <= 12;
+	const twelvePM = (bool, hours) => !bool & (hours > 11 && hours < 13);
 
 	// VARIABLE DECLARATIONS
 	const colors = ["red", "orange", "green", "blue", "indigo", "violet", "white"];
@@ -77,6 +79,9 @@ window.onload = () => {
 				date.getHours() - 12
 			} : ${date.getMinutes()} : ${date.getSeconds()} PM`;
 			alertInfoParagraph.innerText = "AM/PM Time Format Selected!";
+			timeParagraph.innerText = time + " \n" + userTimeZone;
+		} else if (twelvePM(isMilitary, date.getHours())) {
+			time = `${date.getHours()} : ${date.getMinutes()} : ${date.getSeconds()} PM`;
 			timeParagraph.innerText = time + " \n" + userTimeZone;
 		} else if (notSubtractTwelve(isMilitary, date.getHours())) {
 			time = `${date.getHours()} : ${date.getMinutes()} : ${date.getSeconds()} AM`;
